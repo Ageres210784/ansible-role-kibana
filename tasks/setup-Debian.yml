@@ -6,13 +6,9 @@
       - gnupg2
     state: present
 
-- name: Add Elasticsearch apt key.
-  apt_key:
-    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-    state: present
-
 - name: Add Kibana repository.
   apt_repository:
-    repo: 'deb https://artifacts.elastic.co/packages/{{ kibana_version }}/apt stable main'
+    repo: 'deb [trusted=yes] https://mirror.yandex.ru/mirrors/elastic/{{ kibana_version }}/ stable main'
     state: present
+    validate_certs: false
     update_cache: true
